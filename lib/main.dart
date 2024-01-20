@@ -1,3 +1,4 @@
+import 'package:extract_text_from_image/Widgets/image_picker_modal.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -116,7 +117,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
+        onPressed: () {
+          imagePickerModal(context);
+        },
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
