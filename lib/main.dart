@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
-          imagePickerModal(context);
+          imagePickerModal(context, onCameraTap: () {print("Camera");}, onGalleryTap: () {print("Gallery");});
         },
         tooltip: 'Increment',
         label: const Text("Scan photo")
