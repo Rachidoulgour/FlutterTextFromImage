@@ -1,8 +1,10 @@
 import 'package:extract_text_from_image/Utils/image_picker_class.dart';
 import 'package:extract_text_from_image/Widgets/image_picker_modal.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'Screens/recognization_page.dart';
 import 'Utils/image_cropper_page.dart';
 
 void main() {
@@ -125,15 +127,33 @@ class _MyHomePageState extends State<MyHomePage> {
             imagePickerModal(context, onCameraTap: () {
               print("Camera");
               pickImage(source: ImageSource.camera).then((value) {
-                if(value !='') {
-                  imageCropperView(value, context);
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => RecognizePage(path: value),
+                        ),
+                      );
+                    }
+                  });
                 }
               });
             }, onGalleryTap: () {
               print("Gallery");
               pickImage(source: ImageSource.gallery).then((value) {
-                if(value !='') {
-                  imageCropperView(value, context);
+                if (value != '') {
+                  imageCropperView(value, context).then((value) {
+                    if (value != '') {
+                      Navigator.push(
+                        context,
+                        CupertinoPageRoute(
+                          builder: (_) => RecognizePage(path: value),
+                        ),
+                      );
+                    }
+                  });
                 }
               });
             });
