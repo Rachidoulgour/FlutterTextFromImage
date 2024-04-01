@@ -1,5 +1,7 @@
+import 'package:extract_text_from_image/Utils/image_picker_class.dart';
 import 'package:extract_text_from_image/Widgets/image_picker_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
 
 void main() {
   runApp(const MyApp());
@@ -117,13 +119,27 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          imagePickerModal(context, onCameraTap: () {print("Camera");}, onGalleryTap: () {print("Gallery");});
-        },
-        tooltip: 'Increment',
-        label: const Text("Scan photo")
-        //child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          onPressed: () {
+            imagePickerModal(context, onCameraTap: () {
+              print("Camera");
+              pickImage(source: ImageSource.camera).then((value) {
+                if(value !='') {
+
+                }
+              });
+            }, onGalleryTap: () {
+              print("Gallery");
+              pickImage(source: ImageSource.gallery).then((value) {
+                if(value !='') {
+                  
+                }
+              });
+            });
+          },
+          tooltip: 'Increment',
+          label: const Text("Scan photo")
+          //child: const Icon(Icons.add),
+          ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
