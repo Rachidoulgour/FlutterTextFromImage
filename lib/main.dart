@@ -3,6 +3,8 @@ import 'package:extract_text_from_image/Widgets/image_picker_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
+import 'Utils/image_cropper_page.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -124,14 +126,14 @@ class _MyHomePageState extends State<MyHomePage> {
               print("Camera");
               pickImage(source: ImageSource.camera).then((value) {
                 if(value !='') {
-
+                  imageCropperView(value, context);
                 }
               });
             }, onGalleryTap: () {
               print("Gallery");
               pickImage(source: ImageSource.gallery).then((value) {
                 if(value !='') {
-                  
+                  imageCropperView(value, context);
                 }
               });
             });
