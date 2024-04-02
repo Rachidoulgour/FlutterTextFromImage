@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:translator/translator.dart';
 
 class RecognizePage extends StatefulWidget {
   final String path;
@@ -42,7 +43,10 @@ class _RecognizePageState extends State<RecognizePage> {
       _isBusy = true;
     });
     final RecognizedText recognizedText = await textRecognizer.processImage(image);
-    controller.text = recognizedText.text;
+    final translator = GoogleTranslator();
+    var translatedText = await translator.translate(recognizedText.text, to: 'es');
+    // controller.text = recognizedText.text;
+    controller.text = translatedText as String;
     setState(() {
       _isBusy = false;
     });
